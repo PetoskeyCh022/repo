@@ -28,6 +28,10 @@ def handle_events():
     if event.type == pygame.QUIT:
       return False
   return True
+
+
+def draw_rectangle(screen, color, x, y, width, height):
+  pygame.draw.rect(screen, color, (x, y, width, height))
     
 
   
@@ -37,30 +41,53 @@ def main():
   screen = init_game()
   clock = pygame.time.Clock() # Initialize the clock here
 
-  # Define text properties
-  text1 = "Salutations Python!"
-  font_size1 = 48
+  text1 = "Jay"
+  font_size1 = 5
   color1 = config.BLACK
-  x1, y1 = (200, 250)
+  x1, y1 = (95, 325)
+  width1 = 250
+  height1 = 125
+
+  text2 = "Obama"
+  font_size2 = 20
+  color2 = config.BLUE
+  x2, y2 = (400, 100)
+  width2 = 400
+  height2 = 50
 
   running = True
   while running:
     running = handle_events()
+    value1 = 1
+    value2 = 3
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP]:
-      y1 -= 10
+      y1 -= value1
     if keys[pygame.K_DOWN]:
-      y1 += 10
+      y1 += value1
     if keys[pygame.K_LEFT]:
-      x1 -= 10
+      x1 -= value1
     if keys[pygame.K_RIGHT]:
-      x1 += 10
+      x1 += value1
+    if keys[pygame.K_w]:
+      y2 -= value2
+    if keys[pygame.K_s]:
+      y2 += value2
+    if keys[pygame.K_a]:
+      x2 -= value2
+    if keys[pygame.K_d]:
+      x2 += value2
+    
     
     screen.fill(config.WHITE) # Use color from config
 
     # Draw text on screen using variables
-    draw_text(screen, text1, x1, y1, font_size1, color1)
+    draw_rectangle(screen, color1, x1, y1, width1, height1)
+    draw_rectangle(screen, color2, x2, y2, width2, height2)
+    draw_text(screen, text1, x1, y1, font_size1, config.GREEN)
+    draw_text(screen, text2, x2, y2, font_size2, config.RED)
+
 
     pygame.display.flip()
 
